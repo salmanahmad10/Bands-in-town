@@ -1,0 +1,16 @@
+.card{
+    display: flex;
+    width: max-content;
+    margin-bottom: 5rem;
+    box-shadow: 8px 13px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  }
+  .card-body{
+    display: flex;
+    flex-direction: column;
+  }
+  .card-content{
+    flex: 1 0 auto;
+  }
+  .card-image{
+    width: 151px;
+  }
