@@ -4,25 +4,35 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-
-const eventCard=()=> {
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import EmojiEventsTwoToneIcon from '@material-ui/icons/EmojiEventsTwoTone';
+import MusicNoteTwoToneIcon from '@material-ui/icons/MusicNoteTwoTone';
+import LanguageTwoToneIcon from '@material-ui/icons/LanguageTwoTone';
+import EventTwoToneIcon from '@material-ui/icons/EventTwoTone';
+const eventCard=(props)=> {
+    
   return (
+      
     <Card className="root" variant="outlined">
       <CardContent>
         <Typography className="event-card-title" color="textSecondary" gutterBottom>
-          Word of the Day
+          <h3><MusicNoteTwoToneIcon/>{props.event["venue"]["name"]}</h3>
+  
+         
         </Typography>
         <Typography variant="h5" component="h2">
         </Typography>
         <Typography className="event-card-pos" color="textSecondary">
-          adjective
+         <LanguageTwoToneIcon/> {props.event["venue"]["country"]}
         </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+        <Typography className="event-card-pos" color="textSecondary">
+         <LocationCityIcon/> {props.event["venue"]["city"]}
         </Typography>
+        <Typography className="event-card-pos" color="textSecondary">
+         <EventTwoToneIcon/> {props.event["datetime"]}
+        </Typography>
+       
+        
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>

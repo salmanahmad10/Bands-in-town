@@ -2,3 +2,4 @@ node_modules/
 build/
 extracode.js
 test/
+src/components/search3.jsx

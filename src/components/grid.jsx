@@ -5,41 +5,19 @@ import Grid from '@material-ui/core/Grid';
 import '../styles/grid.scss'
 import EventCard from './eventCard';
 
-const CenteredGrid=()=>{
-  return (
-    <div className="root">
-      <Grid container spacing={3}>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        <Grid item md={4} xs={12} >
-          <Paper className="paper"><EventCard></EventCard></Paper>
-        </Grid>
-        
-        
-      </Grid>
-    </div>
-  );
+const CenteredGrid=(props)=>{  
+    return (
+            <div className="root">
+            
+                <Grid  container spacing={3}>
+                {props.eventData[0].map((event,index)=>(
+                <Grid key={index} item md={4} xs={12} >
+                    <Paper className="paper"><EventCard event={event} ></EventCard></Paper>
+                </Grid>
+                 ))}
+                </Grid>
+           
+            </div>
+        );
 }
 export default CenteredGrid;
