@@ -1,5 +1,5 @@
 import '../styles/search.scss';
-import React,{useState} from 'react';
+import React,{useState,createContext} from 'react';
 
 import { Button } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
@@ -9,14 +9,17 @@ import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import arrays from '../variables/arrayData';
 import Card from './cards';
-import Grid from './grid'
+import Grid from './grid';
+
 class search extends React.Component {
     constructor(props){
         super(props);
+        
         this.state={
             fetched:false,
             artistData:{},
-            error_message:""
+            error_message:"",
+            artistName:""
         }
     }
     fetchArtists=async()=>{
@@ -24,7 +27,6 @@ class search extends React.Component {
         const cURL=URL+this.state.artistName;
         await axios.get(cURL,{
             params:{
-                
                 app_id:"0ab49580-c84f-44d4-875f-d83760ea2cfe"
             }         
         })
@@ -37,10 +39,11 @@ class search extends React.Component {
             }
             else{
                 this.artistData=response["data"]
-                this.fetchEvents()
+                
                 this.setState({
                     fetched:true
                 })
+                this.fetchEvents()
             }
             
             console.log(response)
@@ -50,13 +53,12 @@ class search extends React.Component {
     const URL="https://rest.bandsintown.com/artists/";
     const cURL=URL+this.state.artistName+"/events";
     await axios.get(cURL,{
-        params:{
-            
+        params:{     
             app_id:"0ab49580-c84f-44d4-875f-d83760ea2cfe"
         }         
     })
     .then((response) => {
-        console.log(response)
+        this.props.parentCallback([response["data"]])
     });
     }
 
