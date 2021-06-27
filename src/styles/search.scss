@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .container {
     height: 100vh;
     
@@ -7,8 +8,9 @@
     align-items: center;//horizontal
     // padding: 0 2rem;
     transition: all 2s;
+    font-family: 'Montserrat', sans-serif;
 }
-
+ 
 .search{
     width: 100%;
     background-color: white;

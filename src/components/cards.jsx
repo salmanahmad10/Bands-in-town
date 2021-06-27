@@ -14,17 +14,19 @@ const card=(props)=>{
       <div className="card-body">
         <CardContent className="card-content">
           <Typography component="h5" variant="h5">
-            Live From Space
+            <a href="">
+            {props.artist_name}
+            </a>
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+            <a href={props.facebook_url} className="fb-link" target="_blank">{props.facebook_url}</a>
           </Typography>
         </CardContent>
         
       </div>
       <CardMedia
         className="card-image"
-        image="https://i.natgeofe.com/n/9135ca87-0115-4a22-8caf-d1bdef97a814/75552.jpg?w=636&h=424"
+        image={props.image}
         title="Live from space album cover"
       />
     </Card>

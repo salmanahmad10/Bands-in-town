@@ -1,0 +1,40 @@
+$bg-color:#edde9c;
+html{
+  scroll-behavior: smooth;
+}
+body{
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    background-color: $bg-color;
+    color:white;
+    background: url("../src/assets/images/background/bg.png");
+    background-position: center;
+}
+.App{
+    padding: 0 2rem;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: $bg-color;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #bc2e1e;
+    border-radius: 15px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #378ab4;
+  }
