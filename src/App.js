@@ -1,16 +1,18 @@
-import './App.css';
-import Search from './components/search';
+import './App.scss';
+import Search from './components/search2';
 import Card from './components/cards'
-import FetchEvents from './components/fetchEvents';
+import EventCard from './components/eventCard';
+import Grid from './components/grid';
+
 function App() {
   return (
       <div className="App">
         <div className="container">
         <Search></Search>
       </div>
-      <Card></Card>
-      <FetchEvents></FetchEvents>
-
+      <div id="events">
+      <Grid></Grid>
+      </div>
     </div>
   );
 }

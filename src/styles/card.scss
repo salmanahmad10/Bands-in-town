@@ -3,6 +3,15 @@
     width: max-content;
     margin-bottom: 5rem;
     box-shadow: 8px 13px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    margin-top: 50px;
+    
+    transition: all 2s;
+  }
+  a{
+    text-decoration: none;
+  }
+  a.fb-link:hover{
+    text-decoration: underline;
   }
   .card-body{
     display: flex;
