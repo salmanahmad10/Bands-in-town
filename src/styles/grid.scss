@@ -1,5 +1,6 @@
 .root{
-    flex-grow: 1,
+    flex-grow: 1;
+    transition: all 2s;
 }
 .paper{
     // padding: theme.spacing(2),
