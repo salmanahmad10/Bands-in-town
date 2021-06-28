@@ -8,9 +8,8 @@ import EventCard from './eventCard';
 const CenteredGrid=(props)=>{  
     return (
             <div className="root">
-            
                 <Grid  container spacing={3}>
-                {props.eventData[0].map((event,index)=>(
+                {props.eventData.map((event,index)=>(
                 <Grid key={index} item md={4} xs={12} >
                     <Paper className="paper"><EventCard event={event} ></EventCard></Paper>
                 </Grid>

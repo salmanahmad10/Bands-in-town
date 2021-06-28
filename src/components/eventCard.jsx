@@ -16,7 +16,7 @@ const eventCard=(props)=> {
     <Card className="root" variant="outlined">
       <CardContent>
         <Typography className="event-card-title" color="textSecondary" gutterBottom>
-          <h3><MusicNoteTwoToneIcon/>{props.event["venue"]["name"]}</h3>
+          <MusicNoteTwoToneIcon/><h3>{props.event["venue"]["name"]}</h3>
   
          
         </Typography>
