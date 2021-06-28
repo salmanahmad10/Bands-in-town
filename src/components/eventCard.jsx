@@ -10,13 +10,20 @@ import MusicNoteTwoToneIcon from '@material-ui/icons/MusicNoteTwoTone';
 import LanguageTwoToneIcon from '@material-ui/icons/LanguageTwoTone';
 import EventTwoToneIcon from '@material-ui/icons/EventTwoTone';
 const eventCard=(props)=> {
-    
+  const timeFormat=(time)=>{
+    var timeString=time;
+    var H = +timeString.substr(0, 2);
+    var h = H % 12 || 12;
+    var ampm = (H < 12 || H === 24) ? " AM" : " PM";
+    timeString = h + timeString.substr(2, 3) + ampm;
+    return timeString
+  }
   return (
-      
+    
     <Card className="root" variant="outlined">
       <CardContent>
         <Typography className="event-card-title" color="textSecondary" gutterBottom>
-          <MusicNoteTwoToneIcon/><h3>{props.event["venue"]["name"]}</h3>
+        <h3><MusicNoteTwoToneIcon/>{props.event["venue"]["name"]}</h3>
   
          
         </Typography>
@@ -29,7 +36,7 @@ const eventCard=(props)=> {
          <LocationCityIcon/> {props.event["venue"]["city"]}
         </Typography>
         <Typography className="event-card-pos" color="textSecondary">
-         <EventTwoToneIcon/> {props.event["datetime"]}
+         <EventTwoToneIcon/> {props.event["datetime"].split("T")[0]+" at "+timeFormat(props.event["datetime"].split("T")[1])}
         </Typography>
        
         
