@@ -13,15 +13,16 @@ function App() {
   const [eventsPerPage,setEventsCurrentPage]=useState(6)
   const [eventsData, seteventsData]=useState([])
   let currentEvents=[]
+  const indexOfLastPost=currentPage * eventsPerPage;
+  const indexOfFirstPost=indexOfLastPost - eventsPerPage;
+  if(eventsData[0]){
+    currentEvents=eventsData[0].slice(indexOfFirstPost,indexOfLastPost)
+  }
+  const paginate=(pageNumber)=>setCurrentPage(pageNumber)
   const callbackFunction = async (childData) => {
     await seteventsData(childData)
-}
-    const indexOfLastPost=currentPage * eventsPerPage;
-    const indexOfFirstPost=indexOfLastPost - eventsPerPage;
-    if(eventsData[0]){
-      currentEvents=eventsData[0].slice(indexOfFirstPost,indexOfLastPost)
-    }
-    const paginate=(pageNumber)=>setCurrentPage(pageNumber)
+  }
+    
   return (
       <div className="App">
         <div className="container">
@@ -30,9 +31,9 @@ function App() {
       </div>
       <div id="events">
       {eventsData.length>0?
-        <Grid eventData={currentEvents}></Grid> :"No events found"}
+        <Grid eventData={currentEvents}></Grid> :<Grid eventData={[]}></Grid>}
         {eventsData.length>0?
-        <Pagination eventsPerPage={eventsPerPage} totalEvents={eventsData[0].length} paginate={paginate}></Pagination> :"No events found"}
+        <Pagination eventsPerPage={eventsPerPage} totalEvents={eventsData[0].length} paginate={paginate}></Pagination> :""}
         
       </div>
     </div>

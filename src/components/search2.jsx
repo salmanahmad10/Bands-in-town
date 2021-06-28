@@ -7,7 +7,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import arrays from '../variables/arrayData';
 import Card from './cards';
 import Grid from './grid';
 

@@ -7,10 +7,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import arrays from '../variables/arrayData';
 import Card from './cards';
 import Grid from './grid';
-
+const {REACT_APP_API_ID}=process.env
 const Search=(props)=>{
     const cache = {};
 
@@ -21,10 +20,31 @@ const Search=(props)=>{
     
     const URL="https://rest.bandsintown.com/artists/";
     const cURL=URL+artistName;
+    console.log(localStorage)
+
+    const deleteOldestCachedData=(oldestDeltedCount)=>{
+        var entries = [];
+        for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        var entryStr = localStorage.getItem(key);
+        var entry = JSON.parse(entryStr);
+        entries.push({ key: key, timestamp: entry.timestamp });
+        }
+        // Sort newest first (we want to keep the first newest)  
+        entries.sort((entry1, entry2) => {
+        return entry1.timestamp < entry2.timestamp;
+        });
+        console.log(entries)
+        for (var i = 0; i < oldestDeltedCount; i++) {
+            window.localStorage.removeItem(entries[i].key);
+        }
+    }
+
     const fetchArtists=async()=>{
         if (localStorage.getItem(cURL) !== null) {
             const localStorageArtistData=JSON.parse(localStorage.getItem(cURL))
-            setArtistData(localStorageArtistData)
+            console.log(localStorageArtistData["data"])
+            setArtistData(localStorageArtistData["data"])
             setFetched(true)
             fetchEvents()
         }
@@ -32,39 +52,48 @@ const Search=(props)=>{
             
             await axios.get(cURL,{
                 params:{
-                    app_id:"0ab49580-c84f-44d4-875f-d83760ea2cfe"
+                    app_id:REACT_APP_API_ID,
                 }         
             })
             .then((response) => {
                 if(response["data"]["error"] || response["data"]==""){
                     setErrorMessage("Results not found");
+                    props.parentCallback([])//sending app.js an empty array==>no events found
                     setFetched(false)
-                    console.log("no data found")
                 }
                 else{
-                    localStorage.setItem(cURL,JSON.stringify(response["data"]))
+                    if(localStorage.length>=30){
+                        deleteOldestCachedData(2)
+                    }
+                    localStorage.setItem(cURL,JSON.stringify({
+                        data:response["data"],
+                        timestamp:Date.now()
+                        
+                    }))
                     setArtistData(response["data"])
                     setFetched(true)
                     fetchEvents()
+                    
                 }
                 console.log(response)
                 });
             }
         }
+      
 
       const fetchEvents=async()=>{
         const URL="https://rest.bandsintown.com/artists/";
         const cURL=URL+artistName+"/events";
         if (localStorage.getItem(cURL) !== null) {
             const localStorageEventsData=JSON.parse(localStorage.getItem(cURL))
-            props.parentCallback([localStorageEventsData])
-            console.log(localStorageEventsData)
+            props.parentCallback([localStorageEventsData["data"]])
+            console.log(localStorageEventsData["data"])
             setFetched(true)
         }
         else{
         await axios.get(cURL,{
             params:{     
-                app_id:"0ab49580-c84f-44d4-875f-d83760ea2cfe"
+                app_id:process.env.REACT_APP_API_ID,
             }         
         })
         .then((response) => {
@@ -75,7 +104,11 @@ const Search=(props)=>{
             else{
                 setFetched(true)
                 props.parentCallback([response["data"]])
-                localStorage.setItem(cURL,JSON.stringify(response["data"]))
+                localStorage.setItem(cURL,JSON.stringify({
+                    data:response["data"],
+                    timestamp:Date.now()
+                    
+                }))
             }
             
         });
