@@ -1,17 +1,13 @@
 import '../styles/search.scss';
-import React,{useState,createContext} from 'react';
+import React,{useState} from 'react';
 
 import { Button } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
 import SearchIcon from '@material-ui/icons/Search';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Card from './cards';
-import Grid from './grid';
 const {REACT_APP_API_ID}=process.env
 const Search=(props)=>{
-    const cache = {};
 
     const [fetched,setFetched]=useState(false);
     const [artistData,setArtistData]=useState([]);
@@ -20,7 +16,6 @@ const Search=(props)=>{
     
     const URL="https://rest.bandsintown.com/artists/";
     const cURL=URL+artistName;
-    console.log(localStorage)
 
     const deleteOldestCachedData=(oldestDeltedCount)=>{
         var entries = [];
@@ -34,22 +29,19 @@ const Search=(props)=>{
         entries.sort((entry1, entry2) => {
         return entry1.timestamp < entry2.timestamp;
         });
-        console.log(entries)
-        for (var i = 0; i < oldestDeltedCount; i++) {
-            window.localStorage.removeItem(entries[i].key);
+        for (var j = 0; j < oldestDeltedCount; j++) {
+            window.localStorage.removeItem(entries[j].key);
         }
     }
 
     const fetchArtists=async()=>{
         if (localStorage.getItem(cURL) !== null) {
             const localStorageArtistData=JSON.parse(localStorage.getItem(cURL))
-            console.log(localStorageArtistData["data"])
             setArtistData(localStorageArtistData["data"])
             setFetched(true)
             fetchEvents()
         }
         else{
-            
             await axios.get(cURL,{
                 params:{
                     app_id:REACT_APP_API_ID,
@@ -58,7 +50,7 @@ const Search=(props)=>{
             .then((response) => {
                 if(response["data"]["error"] || response["data"]==""){
                     setErrorMessage("Results not found");
-                    props.parentCallback([])//sending app.js an empty array==>no events found
+                    props.parentCallback([])//sending app.js an empty array==>no events
                     setFetched(false)
                 }
                 else{
@@ -75,7 +67,6 @@ const Search=(props)=>{
                     fetchEvents()
                     
                 }
-                console.log(response)
                 });
             }
         }
@@ -87,7 +78,6 @@ const Search=(props)=>{
         if (localStorage.getItem(cURL) !== null) {
             const localStorageEventsData=JSON.parse(localStorage.getItem(cURL))
             props.parentCallback([localStorageEventsData["data"]])
-            console.log(localStorageEventsData["data"])
             setFetched(true)
         }
         else{
