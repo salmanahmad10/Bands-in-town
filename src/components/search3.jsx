@@ -63,6 +63,7 @@ const Search=(props)=>{
                         
                     }))
                     setArtistData(response["data"])
+                    console.log("responce data",response["data"])
                     setFetched(true)
                     fetchEvents()
                     
