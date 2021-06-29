@@ -5,7 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import EmojiEventsTwoToneIcon from '@material-ui/icons/EmojiEventsTwoTone';
 import MusicNoteTwoToneIcon from '@material-ui/icons/MusicNoteTwoTone';
 import LanguageTwoToneIcon from '@material-ui/icons/LanguageTwoTone';
 import EventTwoToneIcon from '@material-ui/icons/EventTwoTone';
@@ -18,6 +17,8 @@ const eventCard=(props)=> {
     timeString = h + timeString.substr(2, 3) + ampm;
     return timeString
   }
+  if(Object.keys(props).length>0){
+    console.log("PROPS",props)
   return (
     
     <Card className="root" variant="outlined">
@@ -45,6 +46,13 @@ const eventCard=(props)=> {
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
-  );
+  );}
+  else{
+    return(
+      <div>
+        nothing
+      </div>
+    )
+  }
 }
 export default eventCard;

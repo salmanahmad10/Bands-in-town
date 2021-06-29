@@ -1,11 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import '../styles/grid.scss'
 import EventCard from './eventCard';
 
-const CenteredGrid=(props)=>{  
+const CenteredGrid=(props)=>{
+    console.log("prooops",props)
+    if(props.eventData.length>0){    
     return (
             <div className="root">
                 <Grid  container spacing={3}>
@@ -17,6 +18,14 @@ const CenteredGrid=(props)=>{
                 </Grid>
            
             </div>
-        );
+        );}
+        else{
+            console.log(props.length)
+            return (
+                <div>
+                   
+                </div>
+            )
+        }
 }
 export default CenteredGrid;
