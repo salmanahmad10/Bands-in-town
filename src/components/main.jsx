@@ -6,6 +6,7 @@ import BandCard from './Bandcard';
 import axios from 'axios';
 
 import '../styles/search.scss';
+import { FormatTextdirectionRToLSharp } from '@material-ui/icons';
 const { REACT_APP_API_ID } = process.env
 
 
@@ -105,7 +106,12 @@ const Main = (props) => {
                 <h1 className="title">BANDS IN TOWN</h1>
             </div>
             <div className="w-100">
-                <form noValidate autoComplete="off">
+                <form noValidate autoComplete="off" onSubmit={(e)=>
+                    {
+                        e.preventDefault();
+                        fetchArtists()
+
+                    }}>
                     <TextField autoFocus id="filled-basic" className="search" label="Search" variant="filled" onChange={handleChange} />
                 </form>
                 <div id="search-options">
