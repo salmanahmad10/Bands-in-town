@@ -35,7 +35,7 @@
 
 ## Features
 - With the use of search bar, search any known band in the search bar to get the basic info of the band
-- Get info about all future events of band with a detailed card. that includes country, city, venue, and date
+- Get info about all future events of band with a detailed card in a grid. that includes country, city, venue, and date
 - With the help of pagination, easily view all the future events of bands and navigate through all event pages.
 - search events between different pages with the help of an event search bar and filter out custom events based on search query.
 - Using local storage, any searched band that return valid results are cached, and next time that band is searched, local storage is used instead of calling data from api. Which one, removes the time constraint and second, it doesn't require the internet.
