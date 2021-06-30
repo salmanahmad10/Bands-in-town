@@ -8,25 +8,24 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import MusicNoteTwoToneIcon from '@material-ui/icons/MusicNoteTwoTone';
 import LanguageTwoToneIcon from '@material-ui/icons/LanguageTwoTone';
 import EventTwoToneIcon from '@material-ui/icons/EventTwoTone';
+
+
+const timeFormat=(time)=>{
+  var timeString=time;
+  var H = +timeString.substr(0, 2);
+  var h = H % 12 || 12;
+  var ampm = (H < 12 || H === 24) ? " AM" : " PM";
+  timeString = h + timeString.substr(2, 3) + ampm;
+  return timeString
+}
+
 const eventCard=(props)=> {
-  const timeFormat=(time)=>{
-    var timeString=time;
-    var H = +timeString.substr(0, 2);
-    var h = H % 12 || 12;
-    var ampm = (H < 12 || H === 24) ? " AM" : " PM";
-    timeString = h + timeString.substr(2, 3) + ampm;
-    return timeString
-  }
   if(Object.keys(props).length>0){
-    console.log("PROPS",props)
   return (
-    
     <Card className="root" variant="outlined">
       <CardContent>
         <Typography className="event-card-title" color="textSecondary" gutterBottom>
-        <h3><MusicNoteTwoToneIcon/>{props.event["venue"]["name"]}</h3>
-  
-         
+        <h3><MusicNoteTwoToneIcon/>{props.event["venue"]["name"]}</h3>  
         </Typography>
         <Typography variant="h5" component="h2">
         </Typography>
@@ -50,7 +49,7 @@ const eventCard=(props)=> {
   else{
     return(
       <div>
-        nothing
+       <h3>No Events Found</h3> 
       </div>
     )
   }

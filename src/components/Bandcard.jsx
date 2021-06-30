@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import '../styles/card.scss';
 
 
-const card=(props)=>{
+const bandCard=(props)=>{
 
   return (
     <Card className="card">
@@ -28,4 +28,4 @@ const card=(props)=>{
     </Card>
   );
 }
-export default card;
+export default bandCard;

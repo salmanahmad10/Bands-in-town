@@ -1,3 +1,5 @@
+$phone-width: 640px;
+$desktop-width: 1024px;
 $bg-color:#edde9c;
 html{
   scroll-behavior: smooth;
@@ -6,10 +8,11 @@ body{
     margin: 0 auto;
     left: 0;
     top: 0;
-    background-color: $bg-color;
     color:white;
-    background: url("../src/assets/images/background/bg.png");
+    background: url("../src/assets/images/background/bg.png")no-repeat center center fixed,$bg-color;
     background-position: center;
+    
+    
 }
 .App{
     padding: 0 2rem;
@@ -41,3 +44,29 @@ a{
   ::-webkit-scrollbar-thumb:hover {
     background: #378ab4;
   }
+
+    
+@mixin phone {
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+body {
+  @include phone {
+  background: url("../src/assets/images/background/mobilebg.png") no-repeat center center fixed,$bg-color;
+  background-size: cover; 
+
+  }
+
+  @include desktop {
+    background: url("../src/assets/images/background/bg.png")no-repeat center center fixed,$bg-color;
+    background-position: cover;
+  }
+}
