@@ -16,6 +16,7 @@ function App() {
   let currentPageEvents=[]
   const indexOfLastPost=currentPage * eventsPerPage;
   const indexOfFirstPost=indexOfLastPost - eventsPerPage;
+  /*sets the number of current event for one page*/
   if(eventsData[0]){
     currentPageEvents=eventsData[0].slice(indexOfFirstPost,indexOfLastPost)
   }
@@ -23,6 +24,7 @@ function App() {
   const eventsDataCallback = async (eventsDataMain) => {
     seteventsData(eventsDataMain)
   }
+  /*searchbarhandler filters the data on the basis of input from search input*/
   const searchBarHandler=(e)=>{
     setSearchTerm(e)
     if(searchTerm!==""){
