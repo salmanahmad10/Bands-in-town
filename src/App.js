@@ -27,9 +27,15 @@ function App() {
     setSearchTerm(e)
     if(searchTerm!==""){
       const newEventList=eventsData[0].filter((event)=>{
-        return new RegExp(searchTerm , 'i').test(Object.values(event)
+        console.log(eventsData[0])
+        console.log(Object.values(event)
+         .join(" ")
+         .toLowerCase());
+        return new RegExp(searchTerm , 'i').test(Object.values(event.venue)
         .join(" ")
-        .toLowerCase())
+        .toLowerCase());
+         
+
       })
     
       setSearchResults(newEventList)      
