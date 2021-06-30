@@ -1,8 +1,8 @@
 # Bands in town
 ## project instructions
 
-To use Bands of wagon project headover to 
-`https://bands-i-n-town.herokuapp.com/`
+To use Bands in town project headover to 
+`https://bands-in-towns.netlify.app`
 where this project is deployed
 
 To install this project on your local machine. Download this project repo from github link mentioned below
