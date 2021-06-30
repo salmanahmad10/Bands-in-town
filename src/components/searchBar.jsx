@@ -6,8 +6,11 @@ function searchBar(props) {
     }
     return (
         <div>
-             <form>
-                <TextField  id="filled-basic" className="searchEvents" label="Search Events" variant="filled" onChange={getSearchTerm} />
+             <form onSubmit={(e)=>
+                    {
+                        e.preventDefault();
+                    }}>
+                <TextField  id="filled-basic" className="searchEvents" label="Search Events" variant="filled" onChange={getSearchTerm}  />
             </form>
         </div>
     );
