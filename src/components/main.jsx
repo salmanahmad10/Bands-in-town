@@ -95,7 +95,7 @@ const Main = (props) => {
     }
 
     const handleChange = (e) => {
-        setArtistName(e.target.value)
+        setArtistName(e.target.value.replace(/ +/g, ""))
     }
 
 
