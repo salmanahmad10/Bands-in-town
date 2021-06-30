@@ -22,7 +22,13 @@ const Main = (props) => {
     const cURL = URL + artistName;
 
 
+/*
+    fetchArttists api fetch the artists that matches user input.
+    it first checks local storage, if data in local storage doesnt 
+    exist for that input, it calls the api.if api call is successfull
+    fetchEvents is called which fetch all the events of that artist.
 
+*/
 
     const fetchArtists = async () => {
         if (localStorage.getItem(cURL) !== null) {
@@ -142,7 +148,12 @@ const Main = (props) => {
     );
 
 }
-
+/*
+    deleteOldestCachedData takes no of data entries
+    to be deleted from  localstorage. this function
+    is invoked when  when set applied limit of 
+    local storage is surpassed.
+*/
 const deleteOldestCachedData = (oldestDeltedCount) => {
     var entries = [];
     for (var i = 0; i < localStorage.length; i++) {
