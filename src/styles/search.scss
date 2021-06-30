@@ -1,14 +1,27 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@font-face {
+    font-family: 'Canilari-Pro';
+    src: local('MyFont'), url(../assets/fonts/Canilari-Pro.ttf) format('opentype'); 
+}
+
+$phone-width: 640px;
+$desktop-width: 1024px;
+
 .container {
     height: 100vh;
-    
     display: flex;
     justify-content: center;//vertical
     align-items: center;//horizontal
-    // padding: 0 2rem;
     transition: all 2s;
     font-family: 'Montserrat', sans-serif;
+}
+.title{
+    margin-top: 0;
+    text-align: center;
+    font-family: 'Canilari-Pro';
+    font-size: 100px;
+    color: #bc2e1e;
+    text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;
 }
  
 .search{
@@ -16,8 +29,7 @@
     background-color: white;
     outline: none;
     color: white;
-    border-radius: 5px;
-    
+    border-radius: 5px; 
 }
 #search-options {
     text-align: center;
@@ -32,19 +44,39 @@
 .flex-column{
     flex-direction: column;
 }
-.title{
-    margin-top: 0;
-    text-align: center;
-    font-family: 'Canilari-Pro';
-    font-size: 100px;
-    color: #bc2e1e;
-text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;
-}
-@font-face {
-    font-family: 'Canilari-Pro';
-    src: local('MyFont'), url(../assets/fonts/Canilari-Pro.ttf) format('opentype');
-    /* other formats include: 'woff2', 'truetype, 'opentype',
-                              'embedded-opentype', and 'svg' */
+
+
+  
+@mixin phone {
+    @media (max-width: #{$phone-width}) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+      @content;
+    }
+  }
+
+  .title {
+    @include phone {
+        margin-top: 0;
+        text-align: center;
+        font-family: 'Canilari-Pro';
+        font-size: 60px;
+        color: #bc2e1e;
+        text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;
+    }
+  
+    @include desktop {
+        margin-top: 0;
+        text-align: center;
+        font-family: 'Canilari-Pro';
+        font-size: 100px;
+        color: #bc2e1e;
+        text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;
+    }
   }
 
   

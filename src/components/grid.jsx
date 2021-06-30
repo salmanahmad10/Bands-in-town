@@ -5,8 +5,7 @@ import '../styles/grid.scss'
 import EventCard from './eventCard';
 
 const CenteredGrid=(props)=>{
-    console.log("prooops",props)
-    if(props.eventData.length>0){    
+    if(props){    
     return (
             <div className="root">
                 <Grid  container spacing={3}>
@@ -22,9 +21,9 @@ const CenteredGrid=(props)=>{
         else{
             console.log(props.length)
             return (
-                <div>
-                   
-                </div>
+               <div>
+                   {/* nothing */}
+               </div>
             )
         }
 }

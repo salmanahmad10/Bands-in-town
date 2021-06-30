@@ -1,25 +1,66 @@
-.card{
-    display: flex;
-    width: max-content;
-    margin-bottom: 5rem;
-    box-shadow: 8px 13px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-    margin-top: 50px;
-    
-    transition: all 2s;
-  }
+
+
+  $phone-width: 640px;
+  $desktop-width: 1024px;
+  
   a{
     text-decoration: none;
   }
   a.fb-link:hover{
     text-decoration: underline;
   }
+  .card{ 
+    display: flex;
+    width: max-content;
+    margin-bottom: 5rem;
+    box-shadow: 8px 13px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    margin-top: 50px; 
+    transition: all 2s;
+    
+  }
   .card-body{
     display: flex;
     flex-direction: column;
+    max-width: 400px;
   }
   .card-content{
     flex: 1 0 auto;
+    width: 60vw;
+    flex-wrap: wrap;
   }
   .card-image{
     width: 151px;
+    flex-flow: row-reverse;
+  }
+  
+  @mixin phone {
+    @media (max-width: #{$phone-width}) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+      @content;
+    }
+  }
+
+  .card {
+    @include phone {
+      display: flex;
+      width: 90vw;
+      margin-bottom: 5rem;
+      box-shadow: 8px 13px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+      margin-top: 50px;
+      transition: all 2s;
+    }
+  
+    @include desktop {
+      display: flex;
+      width: max-content;
+      margin-bottom: 5rem;
+      box-shadow: 8px 13px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+      margin-top: 50px; 
+      transition: all 2s;
+    }
   }

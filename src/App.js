@@ -1,13 +1,11 @@
-import {lazy,Suspense, useEffect} from 'react'
-import './App.scss';
-
-import Grid from './components/grid';
 import { useState } from 'react';
+import {lazy,Suspense, useEffect} from 'react'
+import Grid from './components/grid';
 import Pagination from './components/pagination';
 import Loading from './components/loading';
 import SearchBar from './components/searchBar';
-import { object } from 'prop-types';
-const Search=lazy(()=>import('./components/search3'))
+import './App.scss';
+const Main =lazy(()=>import('./components/main'))
 
 function App() {
   const [currentPage,setCurrentPage]=useState(1)
@@ -15,20 +13,18 @@ function App() {
   const [eventsData, seteventsData]=useState([])
   const [searchTerm,setSearchTerm]=useState("")
   const [searchResults,setSearchResults]=useState([])
-  let currentEvents=[]
+  let currentPageEvents=[]
   const indexOfLastPost=currentPage * eventsPerPage;
   const indexOfFirstPost=indexOfLastPost - eventsPerPage;
   if(eventsData[0]){
-    currentEvents=eventsData[0].slice(indexOfFirstPost,indexOfLastPost)
+    currentPageEvents=eventsData[0].slice(indexOfFirstPost,indexOfLastPost)
   }
   const paginate=(pageNumber)=>setCurrentPage(pageNumber)
-  const callbackFunction = async (childData) => {
-    seteventsData(childData)
+  const eventsDataCallback = async (eventsDataMain) => {
+    seteventsData(eventsDataMain)
   }
   const searchBarHandler=(e)=>{
     setSearchTerm(e)
-    console.log(eventsData[0])
-    console.log(searchTerm)
     if(searchTerm!==""){
       const newEventList=eventsData[0].filter((event)=>{
         return new RegExp(searchTerm , 'i').test(Object.values(event)
@@ -36,9 +32,7 @@ function App() {
         .toLowerCase())
       })
     
-      setSearchResults(newEventList)
-      console.log("new event list",newEventList)
-      
+      setSearchResults(newEventList)      
     }
       else{
         setSearchResults(eventsData[0])
@@ -50,7 +44,7 @@ function App() {
     <Suspense fallback={<Loading></Loading>}>
       <div className="App">
         <div className="container">
-        <Search parentCallback={callbackFunction}></Search>
+        <Main eventsDataCallback={eventsDataCallback}></Main>
       </div>
       <div id="events">
        
@@ -58,10 +52,9 @@ function App() {
         <div>
           <SearchBar handler={searchBarHandler}></SearchBar>
           {console.log(searchResults)}
-          <Grid eventData={searchTerm.length>0?searchResults:currentEvents}></Grid>
+          <Grid eventData={searchTerm.length>0?searchResults:currentPageEvents}></Grid>
           <Pagination eventsPerPage={eventsPerPage} totalEvents={eventsData[0].length} paginate={paginate}></Pagination>
         </div>:<Grid eventData={[]}></Grid>
-         
          }
       </div>
     </div>
